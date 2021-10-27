@@ -11,11 +11,11 @@
 - 새로운 개념의 여행 서비스 고안(파티 참가인원 랜덤 매칭 기능 제공)
 
 **개발환경**
-- Window 7 · 10
-- Java8, Oracle DB
-- HTML5, CSS, Java Script, jQuery, JSP & Servlet
-- Spring · mybatis Framework
-- Eclipse, WebStorm, Apache-Tomcat, Sql Developer
+- (OS) Window 7 · 10 
+- (Development Tool) Eclipse, WebStorm, Sql Developer, Apache-Tomcat
+- (Framework) Spring · mybatis
+- (DB) Oracle DB
+- (Skills) HTML5, CSS, Java Script, jQuery, JSP & Servlet, Java8, SQL
 
 **담당역할**
 - 카카오 지도 API
