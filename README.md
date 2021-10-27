@@ -1,1 +1,34 @@
-# webservice-project-feria
+# 페리아(Feria)
+
+## 프로젝트 개요
+- 프로젝트명 : 페리아(Feria)
+- 모델1 방식으로 개발 후 MVC패턴을 도입하여 변환
+
+![](readme-imgs/plan.png)
+
+## 프로젝트 주요 내용
+**개발목표**
+- 새로운 개념의 여행 서비스 고안(파티 참가인원 랜덤 매칭 기능 제공)
+
+**개발환경**
+- Window 7 · 10
+- Java8, Oracle DB
+- HTML5, CSS, Java Script, jQuery, JSP & Servlet
+- Spring · mybatis Framework
+- Eclipse, WebStorm, Apache-Tomcat, Sql Developer
+
+**담당역할**
+- 카카오 지도 API
+- Ajax를 활용한 상태에 따른 옵션 기능
+- 정규표현식을 이용한 유효성 검사
+
+**참여도/기여도**
+- 100% / 30%
+
+## DB 모델링
+![](readme-imgs/db-modeling.png)
+- 29개의 테이블 · 기본적으로 Foriegn Key를 사용했으나, 'LIKE' 테이블과 같은 특정 테이블에는 논리적 Foriegn Key를 사용
+
+## 화면 구성
+![](readme-imgs/join-page.jpg)
+![](readme-imgs/my-page.jpg)
