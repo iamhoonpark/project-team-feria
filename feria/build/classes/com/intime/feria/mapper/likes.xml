@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="likes">
+	
+	<select id="">
+		SELECT likes_no, like_type, type_no, u.user_no, br.br_no
+		FROM likes l, users u, b_reviews br
+		WHERE l.user_no = u.user_no
+		AND u.user_no = br.user_no
+		AND u.user_no = 1
+		AND br.fr_no = 1
+	</select>
+	
+	<insert id="insertBibeHeart" parameterType="Like">
+		INSERT INTO likes(likes_no, like_type, type_no, user_no)
+		VALUES(likes_seq.nextval, #{likeType}, #{bibeNo}, #{userNo})
+	</insert>
+	
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cenas">
+		<insert parameterType="Cena" id="insert"> 
+			<selectKey order="BEFORE" resultType="int" keyProperty="cenaNo">
+				SELECT cenas_seq.nextval
+				FROM dual
+			</selectKey>
+			INSERT INTO CENAS(cena_no, cena_img, cena_type, meal_type, cena_name, host_cmt, cena_regdate, user_no) 
+			VALUES(#{cenaNo}, #{cenaImg}, #{cenaType}, #{mealType}, #{cenaName}, #{hostCmt}, systimestamp, #{userNo})
+		</insert>
+</mapper>

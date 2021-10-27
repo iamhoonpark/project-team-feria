@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fDates">
+	
+	<select id="selectList" resultType="FDate" parameterType="PageVO">
+		SELECT fdateNo, feriaName, hostName, profileImg, cenaType, r
+		FROM (SELECT fd.fdate_no fDateNo, f.feria_name feriaName, rownum r,
+       u.last_name||u.first_name hostName, u.profile_img profileImg,
+       c.cena_type cenaType
+		FROM f_dates fd, ferias f, users u, cenas c
+		WHERE fd.feria_no = f.feria_no AND f.user_no = u.user_no AND
+       f.user_no = c.user_no AND f.cena_no = c.cena_no AND fd.feria_confirm = 'O'
+		ORDER BY fd.fdate_no DESC)
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+</mapper>

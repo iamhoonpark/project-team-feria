@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="likes">
+	
+	<!-- 0811 정예찬 좋아요 개수 -->
+	<select id="selectLikeCount" parameterType="Like" resultType="int">
+		SELECT count(*)
+		FROM likes
+		WHERE likes_type = #{likesType} AND type_no = #{typeNo}
+	</select>
+	
+	<!-- 0811 정예찬 좋아요 체크 -->
+	<select id="selectUserLike" parameterType="Like" resultType="int">
+		SELECT count(*)
+		FROM likes
+		WHERE likes_type = #{likesType} AND type_no = #{typeNo} 
+		AND user_no = #{userNo}
+	</select>
+	
+	<!-- 0811 정예찬 좋아요 취소 -->
+	<delete id="delete" parameterType="Like">
+		DELETE likes
+		WHERE likes_type = #{likesType} AND type_no = #{typeNo} 
+		AND user_no = #{userNo}
+	</delete>
+	
+	<!-- 0811 정예찬 좋아요 -->
+	<insert id="insert" parameterType="Like">
+		INSERT INTO likes(likes_no,likes_type,type_no,user_no)
+		VALUES(likes_seq.nextval,#{likesType},#{typeNo},#{userNo})
+	</insert>
+	
+</mapper>

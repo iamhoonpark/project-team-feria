@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bibes">
+	
+	<!-- 2020-08-11 박상훈 : 호스트가 받은 비베 리스트 -->
+	<select id="selectHostsBibeDefault" resultType="Bibe" parameterType="Bibe">
+		SELECT f.user_no no, fd.feria_date feriaDate, ub.bibe_cnt bibeCnt, b.bibe_name bibeName, b.bibe_img bibeImg, bibe_price bibePrice
+		FROM ferias f, f_dates fd, f_participations fp, p_heads p, u_bibes ub, bibes b, b_details bd, b_mlprice bm
+		WHERE f.feria_no = fd.feria_no
+		AND fd.fdate_no = fp.fdate_no
+		AND fp.prtc_no = p.prtc_no
+		AND p.prtc_cnt_no = ub.prtc_cnt_no
+		AND ub.bibe_no = b.bibe_no
+		AND b.bibe_no = bd.bibe_no
+		AND bd.bibe_no = bm.bibe_no
+		AND f.user_no = #{no}
+		ORDER BY ${val} DESC, 4 ASC
+	</select>
+	<!-- #은 컬럼에만 $는 SQL구문 모든 곳에 가능
+		해킹의 가장 기본 인젝션, 그것 때문에 조심해야 함
+		그리고 동적쿼리 if문이 아니라 choose otherwise를 쓸 수 있으나
+		완전히 다른 경우 그냥 select구문을 더 선언할것
+		-->
+	<select id="selectHostBibeVal" resultType="Bibe" parameterType="Bibe">
+		SELECT bibeNo, bibeName, bibeImg, bibePrice, COUNT(*) bibeCnt
+		FROM(SELECT b.bibe_no bibeNo, fd.feria_date feriaDate, ub.bibe_cnt bibeCnt, b.bibe_name bibeName, b.bibe_img bibeImg, bibe_price bibePrice
+			FROM ferias f, f_dates fd, f_participations fp, p_heads p, u_bibes ub, bibes b, b_details bd, b_mlprice bm
+			WHERE f.feria_no = fd.feria_no
+			AND fd.fdate_no = fp.fdate_no
+			AND fp.prtc_no = p.prtc_no
+			AND p.prtc_cnt_no = ub.prtc_cnt_no
+			AND ub.bibe_no = b.bibe_no
+			AND b.bibe_no = bd.bibe_no
+			AND bd.bibe_no = bm.bibe_no
+			AND f.user_no = #{no})
+		GROUP BY bibeNo, bibeName, bibeImg, bibePrice
+		ORDER BY ${val} DESC
+	</select>
+	
+</mapper>

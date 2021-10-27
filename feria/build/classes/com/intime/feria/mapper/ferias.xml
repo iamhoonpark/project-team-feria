@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ferias">
+	
+	<select id="selectList" resultType="Feria" parameterType="PageVO">
+		SELECT feria_no feriaNo,feria_name feriaName,
+       u.user_no,u.last_name||u.first_name hostName,
+       u.profile_img profileImg,
+       c.cena_type cenaType
+		FROM ferias f,users u,cenas c
+		WHERE f.user_no = u.user_no AND
+      f.user_no = c.user_no AND
+      f.cena_no = c.cena_no AND
+      feria_no BETWEEN #{start} AND #{end}
+		ORDER BY 1 DESC
+	</select>
+	
+	<!-- 2020-08-11 박상훈 : 호스트가 개최한 페리아 리스트 -->
+	<select id="selectHostsFeiraList" resultType="Feria" parameterType="PageVO">
+		SELECT feriaNo, userNo, feriaName, feriaDate, cenaImg, cenaType
+		FROM(SELECT feriaNo, userNo, feriaName, feriaDate, cenaImg, cenaType, rownum r
+			FROM(SELECT f.feria_no feriaNo, f.user_no userNo, f.feria_name feriaName, fd.feria_date feriaDate, c.cena_img cenaImg, c.cena_type cenaType
+				FROM ferias f, f_dates fd, cenas c
+				WHERE f.feria_no = fd.feria_no
+				AND f.cena_no = c.cena_no
+				AND f.user_no = #{no}
+				ORDER BY 4 DESC))
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 2020-08-11 박상훈 -->
+	<select id="selectHostsFeriaTotal" resultType="int" parameterType="int">
+		SELECT COUNT(f.feria_no)
+		FROM ferias f, f_dates fd, cenas c
+		WHERE f.feria_no = fd.feria_no
+		AND f.cena_no = c.cena_no
+		AND f.user_no = #{no}
+	</select>
+	
+</mapper>
