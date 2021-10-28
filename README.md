@@ -29,6 +29,6 @@
 ![](readme-imgs/db-modeling.png)
 - 29개의 테이블 · 기본적으로 Foriegn Key를 사용했으나, 'LIKE' 테이블과 같은 특정 테이블에는 논리적 Foriegn Key를 사용
 
-## 화면 구성
+## 담당 화면 구성
 ![](readme-imgs/join-page.jpg)
 ![](readme-imgs/my-page.jpg)
