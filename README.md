@@ -12,9 +12,9 @@
 
 **개발환경**
 - (OS) Window 7 · 10 
-- (Development Tool) Eclipse, WebStorm, Sql Developer, Apache-Tomcat
 - (Framework) Spring · mybatis
 - (DB) Oracle DB
+- (Development Tool) Eclipse, WebStorm, Sql Developer, Apache-Tomcat
 - (Skills) HTML5, CSS, Java Script, jQuery, JSP & Servlet, Java8, SQL
 
 **담당역할**
