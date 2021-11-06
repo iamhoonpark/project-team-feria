@@ -18,6 +18,7 @@
 - (Skills) HTML5, CSS, Java Script, jQuery, JSP & Servlet, Java8, SQL
 
 **담당역할**
+- 페이지네이트
 - 카카오 지도 API
 - Ajax를 활용한 상태에 따른 옵션 기능
 - 정규표현식을 이용한 유효성 검사
